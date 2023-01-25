@@ -46,12 +46,11 @@ app.get('/events', (req, res) => {
  *  Storing the registration data into the database
  */
 app.post('/submit',async (req,res)=>{
-  console.log(req.body.password != req.body.confirmPassword);
   //checking if the password is matching 
   try{
     if(req.body.password != req.body.confirmPassword){
       return res.status(400).send({
-        message : "Both the password are not matching"
+        message : "Invalid Password"
       });
     };
   
@@ -61,7 +60,7 @@ app.post('/submit',async (req,res)=>{
       userName : req.body.userName,
       email : req.body.email,
       phoneNumber : req.body.phoneNumber,
-      password : req.body.password,
+      password :  req.body.password,
       gender : req.body.gender
     }
   
@@ -71,10 +70,41 @@ app.post('/submit',async (req,res)=>{
     //after logging as student the user will be redirected to the dashboard
     res.redirect('/dashboard');
   }catch(error){
-    console.log(error);
+    console.error("Error while creating new user", err.message);
+    res.status(500).send({
+        message : "some internal error while inserting new user"
+    })
   };
   
-})
+});
+
+app.post('/login',async (req,res)=>{
+    //Search the user if it exists 
+    try{
+    var user =  await User.findOne({email : req.body.email});
+    }catch(err){
+    }
+    console.log(user);
+    if(user == null){
+        return res.status(400).send({
+            message : "Failed ! User id doesn't exist"
+        })
+    }
+
+    //User is existing, so now we will do the password matching
+    if(user.password != req.body.password){
+      /**
+       * Add a popup window to show alert
+       */
+        return res.status(401).send({
+            message : "Invalid Password"
+        })
+    }
+
+    //Sending user to dashboard
+    res.redirect('/Dashboard');
+    
+});
 
  /**
  * Setup the mongodb connection 

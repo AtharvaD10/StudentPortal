@@ -1,0 +1,26 @@
+                                    THINGS TO DO
+Work on the flow 
+
+ no need to register again for event just user need to press regiseter button and  be logged in if not ask the user to login again
+    - after register button is placed the imp information can be sent to event 
+    - Efficent 
+ 
+ work on the event page
+
+ work on gender showing on instead of male or Female
+
+admin tab should be removed as he should log in  using the  login page
+ future Scope : {
+    admin can CURD user data
+ }
+
+ admin:{
+    can add event
+    can delte a user
+
+ }
+
+ user : {
+    can see progress 
+    can enter the event 
+ }
