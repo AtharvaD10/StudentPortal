@@ -1,4 +1,8 @@
                                     THINGS TO DO
+
+admin dashboard redirecting not working
+
+
 Work on the flow 
 
  no need to register again for event just user need to press regiseter button and  be logged in if not ask the user to login again
