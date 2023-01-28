@@ -10,5 +10,18 @@
  *
 */
 
-//* Reduce the bugs in frontend
-//* Make backend more clean 
+/**
+ * How to start the server 
+ * should have the following libarires :-
+ *  1.Nodejs
+ *  2.MongoDb
+ * 
+ * 1. Enter the project folder
+ * 2. Start command promt in that folder 
+ * 3. use the following command 
+ *      //* npm install
+ *      //* npm start
+ * 4.then us can go to any browser and use the follow url
+ *      //* http://localhost:3000/
+ *   
+ */
