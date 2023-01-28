@@ -68,3 +68,10 @@ exports.signin = async (req, res) =>{
       res.redirect('/Dashboard');
         
 };
+
+
+exports.logout = (req, res) =>{
+    //Sending user to dashboard
+    res.redirect('/Home');
+      
+};
