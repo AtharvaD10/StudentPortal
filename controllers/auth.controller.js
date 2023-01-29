@@ -1,5 +1,5 @@
 const User = require("../models/user.model");
-
+const bcrypt = require("bcryptjs");
 
 /**
  * Controller for signup/registration
@@ -19,7 +19,7 @@ exports.signup = async (req, res) => {
           userName : req.body.userName,
           email : req.body.email,
           phoneNumber : req.body.phoneNumber,
-          password :  req.body.password,
+          password :  bcrypt.hashSync(req.body.password, 8),
           gender : req.body.gender
         }
       
@@ -29,7 +29,7 @@ exports.signup = async (req, res) => {
         //after logging as student the user will be redirected to the dashboard
         res.redirect('/dashboard');
       }catch(error){
-        console.error("Error while creating new user", err.message);
+        console.error("Error while creating new user", error.message);
         res.status(500).send({
             message : "some internal error while inserting new user"
         })
@@ -42,31 +42,32 @@ exports.signup = async (req, res) => {
  * Controller for signin
  */
 exports.signin = async (req, res) =>{
+
+  var user =  await User.findOne({email : req.body.email});
+
+  console.log(user);
+  if(user == null){
+      return res.status(400).send({
+          message : "Failed ! User id doesn't exist"
+      })
+  }
+
+  //User is existing, so now we will do the password matching
+  var passwordIsValid = bcrypt.compareSync(
+    req.body.password,
+    user.password
+  );
+
+  if (!passwordIsValid) {
+    return res.status(401).send({
+      accessToken: null,
+      message: "Invalid Password!"
+    });
+  }
+
+//Sending user to dashboard
+res.redirect('/Dashboard');
   
-    try{
-        var user =  await User.findOne({email : req.body.email});
-        }catch(err){
-        }
-        console.log(user);
-        if(user == null){
-            return res.status(400).send({
-                message : "Failed ! User id doesn't exist"
-            })
-        }
-    
-        //User is existing, so now we will do the password matching
-        if(user.password != req.body.password){
-          /**
-           * Add a popup window to show alert
-           */
-            return res.status(401).send({
-                message : "Invalid Password"
-            })
-        }
-       
-      //Sending user to dashboard
-      res.redirect('/Dashboard');
-        
 };
 
 

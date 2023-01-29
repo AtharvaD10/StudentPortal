@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const express = require("express");
@@ -56,7 +57,7 @@ mongoose.connect(dbConfig.DB_URL, async () => {
   const user = await User.create({
     name: "Abhinav Chandurkar",
     userName: "admin",
-    password: "abc",
+    password: bcrypt.hashSync('abc',8),
     email: "abhinavchandurkar55@gmail.com",
     gender : "male",
     phoneNumber : 7757945671,
