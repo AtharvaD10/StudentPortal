@@ -27,7 +27,7 @@ exports.signup = async (req, res) => {
         const user = await User.create(userObj);
     
         //after logging as student the user will be redirected to the dashboard
-        res.redirect('/dashboard');
+        res.redirect('/home.html');
       }catch(error){
         console.error("Error while creating new user", error.message);
         res.status(500).send({

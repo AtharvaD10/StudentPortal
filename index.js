@@ -7,7 +7,7 @@ const path = require('path')
 const User = require('./models/user.model')
 
 //Port on which server is running
-const port = process.env.port || 3000;
+const port =  3000;
 
 //Initalizing the server
 const app = express();
@@ -51,21 +51,23 @@ app.get('/events', (req, res) => {
 mongoose.set('strictQuery', true);
 mongoose.connect(dbConfig.DB_URL, async () => {
  
-  await User.collection.drop();// Since this a dev setup
+  // await User.collection.drop();
+  let user = User.find({userType : 'admin'});
 
-  //Creating a admin user 
-  const user = await User.create({
-    name: "Abhinav Chandurkar",
-    userName: "admin",
-    password: bcrypt.hashSync('abc',8),
-    email: "abhinavchandurkar55@gmail.com",
-    gender : "male",
-    phoneNumber : 7757945671,
-    userType: 'admin'
-  });
-
-  //log msg to check the connectivity 
-  console.log("Admin Created");
+  if(!user){
+    //Creating a admin user 
+    const user = await User.create({
+      name: "Abhinav Chandurkar",
+      userName: "admin",
+      password: bcrypt.hashSync('abc',8),
+      email: "abhinavchandurkar55@gmail.com",
+      gender : "male",
+      phoneNumber : 7757945671,
+      userType: 'admin'
+    });
+    //log msg to check the connectivity 
+    console.log("Admin Created");
+  }
   console.log("MongoDB connected");
 
 }); 

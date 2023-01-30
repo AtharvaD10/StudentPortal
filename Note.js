@@ -25,3 +25,5 @@
  *      //* http://localhost:3000/
  *   
  */
+
+//regsiter no redirect insted send msg
