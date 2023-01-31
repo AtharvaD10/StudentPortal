@@ -5,12 +5,16 @@ const express = require("express");
 const dbConfig = require("./config/db.config");
 const path = require('path')
 const User = require('./models/user.model')
+const {authJwt} = require('./middleware');
+const cookieParser = require("cookie-parser");
 
 //Port on which server is running
 const port =  3000;
 
 //Initalizing the server
 const app = express();
+
+app.use(cookieParser());
 
 //body parser
 app.use(bodyParser.json());
@@ -31,7 +35,7 @@ app.get('/admin', (req, res) => {
 });
 
 //Dashboard http://localhost:3000/Dashboard.html
-app.get('/dashboard', (req, res) => {
+app.get('/dashboard', [authJwt.verifyToken],(req, res) => {
     res.sendFile(path.join(__dirname, '/Public', 'Dashboard.html'));
 });
 
@@ -41,10 +45,11 @@ app.get('/registration', (req, res) => {
 });
 
 //Events Page http://localhost:3000/events.html
-app.get('/events', (req, res) => {
+app.get('/events',[authJwt.verifyToken], (req, res) => {
     res.sendFile(path.join(__dirname, '/Public', 'events.html'));
 });
 
+ 
  /**
  * Setup the mongodb connection 
  */

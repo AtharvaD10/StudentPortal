@@ -1,5 +1,8 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
+const config = require("../config/auth.config");
+const jwt = require('jsonwebtoken');
+
 
 /**
  * Controller for signup/registration
@@ -60,10 +63,18 @@ exports.signin = async (req, res) =>{
 
   if (!passwordIsValid) {
     return res.status(401).send({
-      accessToken: null,
       message: "Invalid Password!"
     });
   }
+  
+  const token = jwt.sign({user}, config.secret, {
+    expiresIn: 300 // 5 minutes
+  });
+  
+  res.cookie("token",token,{
+    httpOnly : true
+  });
+  
 
 //Sending user to dashboard
 res.redirect('/Dashboard');

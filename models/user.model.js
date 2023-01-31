@@ -56,6 +56,9 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: 'student',
         enum: ['student', 'admin']
+    },
+    token : {
+        type : String
     }
 });
 
