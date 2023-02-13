@@ -3,9 +3,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const express = require("express");
 const dbConfig = require("./config/db.config");
-const path = require('path')
 const User = require('./models/user.model')
-const {authJwt} = require('./middleware');
+
 const cookieParser = require("cookie-parser");
 
 //Port on which server is running
@@ -21,36 +20,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 require("./routes")(app);
-
 app.use(express.static('public'));
 
-//home page http://localhost:3000/
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/Public', 'home.html'));
-});
-
-//Admin Page http://localhost:3000/Admin.html
-app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, '/Public', 'admin.html'));
-});
-
-//Dashboard http://localhost:3000/Dashboard.html
-app.get('/dashboard', [authJwt.verifyToken],(req, res) => {
-    res.sendFile(path.join(__dirname, '/Public', 'Dashboard.html'));
-});
-
-//Registration page http://localhost:3000/registration.html
-app.get('/registration', (req, res) => {
-    res.sendFile(path.join(__dirname, '/Public', 'registration.html'));
-});
-
-//Events Page http://localhost:3000/events.html
-app.get('/events',[authJwt.verifyToken], (req, res) => {
-    res.sendFile(path.join(__dirname, '/Public', 'events.html'));
-});
-
- 
- /**
+/**
  * Setup the mongodb connection 
  */
 mongoose.set('strictQuery', true);
@@ -74,7 +46,6 @@ mongoose.connect(dbConfig.DB_URL, async () => {
     console.log("Admin Created");
   }
   console.log("MongoDB connected");
-
 }); 
 
 //listening on port 3000

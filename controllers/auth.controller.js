@@ -47,8 +47,9 @@ exports.signup = async (req, res) => {
 exports.signin = async (req, res) =>{
 
   var user =  await User.findOne({email : req.body.email});
+  console.log(user.userType);
 
-  console.log(user);
+  //checking if the user exist
   if(user == null){
       return res.status(400).send({
           message : "Failed ! User id doesn't exist"
@@ -70,7 +71,7 @@ exports.signin = async (req, res) =>{
   const token = jwt.sign({user}, config.secret, {
     expiresIn: 300 // 5 minutes
   });
-  
+   
   res.cookie("token",token,{
     httpOnly : true
   });

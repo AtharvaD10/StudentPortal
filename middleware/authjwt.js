@@ -1,3 +1,8 @@
+/**
+ *  In this file we are creating a cookie and storing the token in data which can verify a user 
+ * 
+ */
+
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config");
 
@@ -5,6 +10,7 @@ const config = require("../config/auth.config");
 
 
 verifyToken = async (req, res, next) => {
+    console.log("Inside Middleware");
     const token = req.cookies.token;
     try{
         const user = jwt.verify(token,config.secret);
