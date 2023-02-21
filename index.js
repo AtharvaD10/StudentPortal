@@ -8,7 +8,7 @@ const User = require('./models/user.model')
 const cookieParser = require("cookie-parser");
 
 //Port on which server is running
-const port =  3000;
+const port =  8080;
 
 //Initalizing the server
 const app = express();
@@ -29,17 +29,17 @@ mongoose.set('strictQuery', true);
 mongoose.connect(dbConfig.DB_URL, async () => {
  
   // await User.collection.drop();
-  let user = User.find({userType : 'admin'});
+  let user = await User.find({userType : 'admin'});
 
   if(!user){
     //Creating a admin user 
     const user = await User.create({
-      name: "Abhinav Chandurkar",
+      name: "Tapi Technoserves",
       userName: "admin",
       password: bcrypt.hashSync('abc',8),
-      email: "abhinavchandurkar55@gmail.com",
+      email: "admin@gmail.com",
       gender : "male",
-      phoneNumber : 7757945671,
+      phoneNumber : 8237039228,
       userType: 'admin'
     });
     //log msg to check the connectivity 
@@ -50,5 +50,5 @@ mongoose.connect(dbConfig.DB_URL, async () => {
 
 //listening on port 3000
 app.listen(port, ()=>{
-  console.log("Running on port 3000.");
+  console.log("Running on port 8080.");
 });

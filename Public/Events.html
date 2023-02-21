@@ -3,23 +3,67 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta charset="UTF-8" />
+  <title>dashboard</title>
+  <link rel="stylesheet" href="../Public/css/dashboard.css">
+  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#" class="logo">
+          <img src="https://t4.ftcdn.net/jpg/05/04/29/09/360_F_504290924_AK49AKOGrubU4A7Q1GgaOdDaz0BIiTK5.jpg">
+          <span class="nav-item">Dashboard</span>
+        </a></li>
+        <li><a href="../Public/internship.html">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-item">Internships</span>
+        </a></li>
+        <li><a href="../Public/Events.html">
+          <i class="fas fa-comment"></i>
+          <span class="nav-item">Events</span>
+        </a></li>
+        <li><a href="../Public/seminar.html">
+          <i class="fas fa-book-reader"></i>
+          <span class="nav-item">Seminar</span>
+        </a></li>
+        <li><a href="#">
+          <i class="fas fa-bell"></i>
+          <span class="nav-item">Help</span>
+        </a></li>
+        <li><a href="#" class="logout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="nav-item">Log out</span>
+        </a></li>
+      </ul>
+    </nav>
+    
+
+
+    
+       
+       <section class="main">
+        <h1>My Events</h1>
+        <div class="course-box">
     <!-- <title>Responsive Sidebar Menu</title> -->
    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
   </head>
   <style>
-    .wrapper{
-     max-width:1220px;
+    .Wrapper{
+     max-width:1200px;
      margin:auto;
-     background:#f2f2f2;
+     background:linear-gradient(135deg, #3e5e73, #8c888e);                /* * */
      overflow:auto;
    }
   
    .events{
      
      margin:5px;
-     border:1px solid #ccc;
+     border:linear-gradient(135deg, #3e5e73, #8c888e);                    /* * */
      float:left;
      width:390px;
   
@@ -31,8 +75,8 @@
    }
   
    .desc{
-    padding:16px;
-    text-align:center;
+    padding:13px;                                     /* * */ 
+    text-align:left;
     }
   
     footer{
@@ -50,14 +94,14 @@
 
        <!-- //ADDING EVENTS -->
    
-       <div class ="wrapper">
+       <div class ="Wrapper">
         <h1><center>All Available Events</center></h1>
           
         <div class="events">
           <a href="EVENTSPAGES/EventDetails1.html">
             <img src="IMAGES/p1.jpeg" alt="Img" width="400" height="300">
           </a>
-               <div class="desc">Mindfreaks (An aptitude and personality test)</div>
+                 <div class="desc">Mindfreaks (An aptitude test)</div>                         <!--      /*...*/           -->
               
               </div>
     
@@ -65,19 +109,19 @@
           <a href="EVENTSPAGES/EventDetails2.html">
           <img src="IMAGES/p2.jpeg" alt="Img" width= "300" height= "400">
         </a>
-               <div class="desc">Multiverse of Madness (Gaming Event)</div>
+               <div class="desc">Multiverse of Madness (Gaming Event)</div>                  
                </div>
     
         <div class="events">
           <a href="EVENTSPAGES/EventDetails3.html">
             <img src="IMAGES/p3.jpeg" alt="Img" width= "300" height= "400"></a>
-                <div class="desc">AR Spark (An event to design games using augmented reality).</div>
+                <div class="desc">AR Spark (An event to design games using AR)</div>              <!-- /* * */ -->
                     </div>
     
         <div class="events">
           <a href="EVENTSPAGES/EventDetails4.html">
           <img src="IMAGES/p4.jpeg" alt="Img" width= "300" height= "400"></a>
-            <div class="desc">Web-Xpress (Project competition on designing website using HTML, CSS, javascript, and other programming languages)</div>
+            <div class="desc">Web-Xpress </div>                                                    <!-- /* * */ -->
              </div>
     
              <div class="events">

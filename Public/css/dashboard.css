@@ -10,7 +10,7 @@
   font-family: "Poppins", sans-serif;
 }
 body{
-  background: rgb(226, 226, 226);
+  background: linear-gradient(135deg, #3e5e73, #8c888e);    
 }
 nav{
   position: sticky;
