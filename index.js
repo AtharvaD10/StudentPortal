@@ -8,7 +8,7 @@ const User = require('./models/user.model')
 const cookieParser = require("cookie-parser");
 
 //Port on which server is running
-const port =  8080;
+const port =  3000;
 
 //Initalizing the server
 const app = express();
@@ -50,5 +50,5 @@ mongoose.connect(dbConfig.DB_URL, async () => {
 
 //listening on port 3000
 app.listen(port, ()=>{
-  console.log("Running on port 8080.");
+  console.log("Running on port 3000.");
 });

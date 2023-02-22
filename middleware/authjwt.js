@@ -10,7 +10,7 @@ const config = require("../config/auth.config");
 
 
 verifyToken = async (req, res, next) => {
-    console.log("Inside Middleware");
+    console.log("Middleware called");
     const token = req.cookies.token;
     try{
         const user = jwt.verify(token,config.secret);
