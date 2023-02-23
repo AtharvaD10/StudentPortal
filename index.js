@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const dbConfig = require("./config/db.config");
 const User = require('./models/user.model')
-
+const path= require('path');
+const multer = require("multer");
 const cookieParser = require("cookie-parser");
 
 //Port on which server is running
@@ -47,6 +48,22 @@ mongoose.connect(dbConfig.DB_URL, async () => {
   }
   console.log("MongoDB connected");
 }); 
+
+const storage = multer.diskStorage({
+  destination : (req,file,cb) =>{
+    cb(null,'./PaymentScreenshot');
+  },
+  filename : (req,file,cb)=>{
+    console.log(file);
+    cb(null,Date.now() + path.extname(file.originalname));
+  }
+})
+const upload = multer({storage : storage})
+
+app.post("/upload",upload.single('image'),(req,res)=>{
+  res.send("Image Uloaded");
+})
+
 
 //listening on port 3000
 app.listen(port, ()=>{

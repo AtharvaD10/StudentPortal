@@ -1,29 +1,10 @@
-//Things to do 
 /**
- * 1. Frontend ={all page should work with each other}
- * 2. Remove all the Copy evidance 
- * 4. No need to register for the event again create a apply button and then send the user data to the event database 
- * 5.Dashboard should be present on each page after logging and also show the username of person logged in 
- * 6. there sholud be a admin dashboard where he can manage user and
- * and how to become admin?
- * 7.//* Store payment Scrrenshot in the database
- * 8.Change the event api 
- * 9. How to add alert/pop up msg
-*/
-
-/**
- * How to start the server 
- * should have the following libarires :-
- *  1.Nodejs
- *  2.MongoDb
+ *      
  * 
- * 1. Enter the project folder
- * 2. Start command promt in that folder 
- * 3. use the following command 
- *      //* npm install
- *      //* npm start
- * 4.then us can go to any browser and use the follow url
- *      //* http://localhost:3000/
- *   
+ * 1.Uplod Image = {
+ *      mangoose multier
+ *  }
+ * 2. pop up msg 
+ * 3. add ajax on dashbaord
+ * 4. add check for all the registratikn feild 
  */
-

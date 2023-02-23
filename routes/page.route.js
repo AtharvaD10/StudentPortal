@@ -6,7 +6,7 @@
 // define the routes - REST endpoints for user ui
 const path = require('path')
 const {authJwt} = require('../middleware');
-
+const imageUploder = require("../middleware");
 module.exports = (app)=>{
     
     //home page http://localhost:3000/
