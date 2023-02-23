@@ -51,6 +51,7 @@ mongoose.connect(dbConfig.DB_URL, async () => {
 
 const storage = multer.diskStorage({
   destination : (req,file,cb) =>{
+    console.log("inside");
     cb(null,'./PaymentScreenshot');
   },
   filename : (req,file,cb)=>{
@@ -58,10 +59,11 @@ const storage = multer.diskStorage({
     cb(null,Date.now() + path.extname(file.originalname));
   }
 })
+
 const upload = multer({storage : storage})
 
 app.post("/upload",upload.single('image'),(req,res)=>{
-  res.send("Image Uloaded");
+  res.send("Image Uploaded");
 })
 
 
