@@ -49,23 +49,6 @@ mongoose.connect(dbConfig.DB_URL, async () => {
   console.log("MongoDB connected");
 }); 
 
-const storage = multer.diskStorage({
-  destination : (req,file,cb) =>{
-    console.log("inside");
-    cb(null,'./PaymentScreenshot');
-  },
-  filename : (req,file,cb)=>{
-    console.log(file);
-    cb(null,Date.now() + path.extname(file.originalname));
-  }
-})
-
-const upload = multer({storage : storage})
-
-app.post("/upload",upload.single('image'),(req,res)=>{
-  res.send("Image Uploaded");
-})
-
 
 //listening on port 3000
 app.listen(port, ()=>{
