@@ -1,7 +1,6 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
-const config = require("../config/auth.config");
-const jwt = require('jsonwebtoken');
+
 
 
 /**
@@ -15,6 +14,13 @@ exports.signup = async (req, res) => {
             message : "Invalid Password"
           });
         };
+
+        // Checking if the userName already exist 
+        const checkUser = await User.findOne({userName : req.body.userName})
+        if(checkUser != null){
+          return res.json("userName already exist");
+        }
+
       
         //creating obj to store user information
         const userObj = {
@@ -28,7 +34,7 @@ exports.signup = async (req, res) => {
       
         //Creating a user 
         const user = await User.create(userObj);
-    
+        
         //after logging as student the user will be redirected to the dashboard
         res.redirect('/home.html');
       }catch(error){
@@ -68,14 +74,16 @@ exports.signin = async (req, res) =>{
     });
   }
   
-  const token = jwt.sign({user}, config.secret, {
-    expiresIn: 300 // 5 minutes
+  // const token = jwt.sign({user}, config.secret, {
+  //   expiresIn: 60 // 5 minutes
+  // });
+  // res.cookie("token",token,{
+  //   httpOnly : true
+  // });
+  res.cookie("userName",user.userName,{
+    httpOnly : true,
+    maxAge : 60000
   });
-   
-  res.cookie("token",token,{
-    httpOnly : true
-  });
-  
 
 //Sending user to dashboard
 res.redirect('/Dashboard');
