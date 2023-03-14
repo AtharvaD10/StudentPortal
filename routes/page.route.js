@@ -23,12 +23,12 @@ module.exports = (app)=>{
       res.sendFile(path.join(__dirname, '../Public', 'Dashboard.html'));
     });
   
-    //Registration page http://localhost:3000/registration.html
+    //Registration page http://localhost:3000/registration
     app.get('/registration', (req, res) => {
       res.sendFile(path.join(__dirname, '../Public', 'registration.html'));
     });
   
-    //Events Page http://localhost:3000/events.html
+    //Events Page http://localhost:3000/events
     app.get('/events',[authJwt.verifyToken], (req, res) => {
       res.sendFile(path.join(__dirname, '../Public', 'events.html'));
     });
@@ -37,9 +37,16 @@ module.exports = (app)=>{
       res.sendFile(path.join(__dirname, '../Public', 'internship.html'));
     });
 
+    app.get('/seminar',[authJwt.verifyToken], (req, res) => {
+      res.sendFile(path.join(__dirname, '../Public', 'seminar.html'));
+    });
 
-    //Events Page http://localhost:3000/events.html
+    //Events Page http://localhost:3000/events
     app.post('/eventsPayment',upload.single('image'), (req, res) => {
       res.sendFile(path.join(__dirname, '../Public', 'events.html'));
+    });
+
+    app.get('/logout',[authJwt.verifyToken], (req, res) => {
+      res.sendFile(path.join(__dirname, '../Public', 'home.html'));
     });
 }

@@ -53,8 +53,6 @@ exports.signup = async (req, res) => {
 exports.signin = async (req, res) =>{
 
   var user =  await User.findOne({email : req.body.email});
-  console.log(user.userType);
-
   //checking if the user exist
   if(user == null){
       return res.status(400).send({
@@ -82,7 +80,7 @@ exports.signin = async (req, res) =>{
   // });
   res.cookie("userName",user.userName,{
     httpOnly : true,
-    maxAge : 60000
+    maxAge : 600000000
   });
 
 //Sending user to dashboard
